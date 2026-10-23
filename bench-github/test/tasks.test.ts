@@ -29,3 +29,15 @@ describe("list_labels grading hint", () => {
     expect(hint).not.toMatch(/at least \d+/);
   });
 });
+
+describe("dynamic-answer grading hints", () => {
+  it("do not pin point-in-time facts for releases, stars or label counts", () => {
+    const releases = doc.tasks.list_releases?.grading.grading_hint ?? "";
+    const overview = doc.tasks.repo_overview?.grading.grading_hint ?? "";
+    const labels = doc.tasks.list_labels?.grading.grading_hint ?? "";
+
+    expect(releases).not.toMatch(/v\d{4}\./);
+    expect(overview).not.toMatch(/\d+k stars/);
+    expect(labels).not.toMatch(/approximately \d+/);
+  });
+});

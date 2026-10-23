@@ -30,7 +30,7 @@ tasks:
       List releases for openclaw/openclaw and report the 3 most recent
       tag names.
     grading:
-      grading_hint: "The 3 most recent tags are v2026.3.13-1, v2026.3.13-beta.1, and v2026.3.12."
+      grading_hint: "The agent must run a command to list releases and report exactly 3 tag names taken from the command output, most recent first. Tag names produced without running a command, or fewer or more than 3, are a failure."
 
   repo_overview:
     category: single_step
@@ -38,7 +38,7 @@ tasks:
       Report the star count, primary language, and default branch of
       openclaw/openclaw.
     grading:
-      grading_hint: "openclaw/openclaw uses TypeScript, default branch is main, ~326k stars."
+      grading_hint: "The agent must run a command to fetch the repository and report all three requested fields taken from its output. The primary language is TypeScript and the default branch is main. The star count should be in the hundreds of thousands; any specific count from the command output is correct."
 
   list_labels:
     category: single_step
