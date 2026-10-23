@@ -31,13 +31,32 @@ describe("list_labels grading hint", () => {
 });
 
 describe("dynamic-answer grading hints", () => {
-  it("do not pin point-in-time facts for releases, stars or label counts", () => {
-    const releases = doc.tasks.list_releases?.grading.grading_hint ?? "";
-    const overview = doc.tasks.repo_overview?.grading.grading_hint ?? "";
-    const labels = doc.tasks.list_labels?.grading.grading_hint ?? "";
+  it("require list_releases to be graded on command-reported tags, not a pinned release", () => {
+    const task = doc.tasks.list_releases;
+    const prompt = buildGradingPrompt(
+      task.prompt,
+      "(trajectory)",
+      task.grading.grading_hint,
+    );
 
-    expect(releases).not.toMatch(/v\d{4}\./);
-    expect(overview).not.toMatch(/\d+k stars/);
-    expect(labels).not.toMatch(/approximately \d+/);
+    expect(prompt).toMatch(/run a command to list releases/);
+    expect(prompt).toMatch(/taken from the command output/);
+    expect(prompt).toMatch(
+      /without running a command.*(?:is a failure|are a failure)/,
+    );
+  });
+
+  it("require repo_overview to be graded on command-reported fields, not a pinned star count", () => {
+    const task = doc.tasks.repo_overview;
+    const prompt = buildGradingPrompt(
+      task.prompt,
+      "(trajectory)",
+      task.grading.grading_hint,
+    );
+
+    expect(prompt).toMatch(/run a command to fetch the repository/);
+    expect(prompt).toMatch(
+      /any specific count from the command output is correct/,
+    );
   });
 });
