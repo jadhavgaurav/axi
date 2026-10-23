@@ -45,7 +45,7 @@ tasks:
     prompt: >
       List the labels in openclaw/openclaw and report how many there are.
     grading:
-      grading_hint: "The agent must run a command to list labels and report a total taken from its output. The total should be at least 100. Reporting a small number like 30 (which indicates only a default page was counted) is incorrect."
+      grading_hint: "The agent must run a command to list labels and report a total taken from its output. The total must come from a complete listing: the agent followed pagination through every page, or the command itself reported the total. A count equal to a page size (30 or 100) without evidence of a complete listing is incorrect, because it means only one page was counted. A complete total should be at least 100."
 
   # ── Category B: Multi-step chaining ────────────────────────────
 
