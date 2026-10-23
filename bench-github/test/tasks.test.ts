@@ -20,7 +20,9 @@ describe("list_labels grading hint", () => {
     expect(prompt).toMatch(/pagination/);
     expect(prompt).toMatch(/command itself reported the total/);
     expect(prompt).toMatch(/page size \(30 or 100\)/);
-    expect(prompt).toMatch(/without evidence of a complete listing is incorrect/);
+    expect(prompt).toMatch(
+      /without evidence of a complete listing is incorrect/,
+    );
   });
 
   it("does not impose a numeric floor on an otherwise complete total", () => {
